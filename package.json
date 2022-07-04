@@ -1,0 +1,20 @@
+{
+  "name": "zh-en_dict",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexander-cheung/zh-en_dict.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexander-cheung/zh-en_dict/issues"
+  },
+  "homepage": "https://github.com/alexander-cheung/zh-en_dict#readme"
+}

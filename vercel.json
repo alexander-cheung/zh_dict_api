@@ -1,0 +1,13 @@
+{
+	"routes": [
+		{
+			"src": "/",
+			"dest": "/api/dict.js"
+		},
+		{
+			"src": "/dict",
+			"methods": ["GET"],
+			"dest": "/api/dict.js"
+		}
+	]
+}
