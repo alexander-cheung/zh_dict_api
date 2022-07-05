@@ -6,7 +6,7 @@ average time for a response is about 1 sec for cold starts, 40 ms for warm start
 
 ## Sample Usage: 
 
-`https://zh-en-dict-lgatheikg-alexander-cheung.vercel.app/api/translate?words=["孤獨","西瓜","休息", "gibberish"]`
+`https://zh-en-dict.vercel.app/api/translate?words=["孤獨","西瓜","休息", "gibberish"]`
 
 ## Sample Response: 
 `["lonely/solitary","watermelon/CL:顆|颗,粒,個|个","rest/to rest", null]`
