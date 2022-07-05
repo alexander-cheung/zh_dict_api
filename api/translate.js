@@ -1,18 +1,9 @@
-var fs = require('fs');
-var file = fs.readFileSync('dict.txt').toString().split("\n");
-var dict = {};
-
-for (line of file) {
-	if (line[0] != "#") {
-		let key = line.slice(0, line.indexOf("/"));
-		let value = line.slice(line.indexOf("/") + 1);
-		dict[key] = value;
-	}
-}
+var dict = require("../dict.json");
 
 module.exports = (req, res) => {
 	let defs = [];
 	if (req.method === "GET" && req.query.words) {
+
 		words = JSON.parse(req.query.words);
 		for (var word of words) {
 			if (word) {
@@ -24,6 +15,6 @@ module.exports = (req, res) => {
 				}
 			}
 		}
-		res.json(defs);
 	} 
+	res.json(defs);
 }
