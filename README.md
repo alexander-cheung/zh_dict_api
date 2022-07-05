@@ -2,7 +2,7 @@
 
 api to query for the english definitions of an array of phrases in Traditional Chinese, using CC-CEDICT definitions
 
-average time for a response is about 1 sec for cold starts, 70 ms for warm starts
+average time for a response is about 1 sec for cold starts, 40 ms for warm starts
 
 ## Sample Usage: 
 
