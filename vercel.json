@@ -7,6 +7,10 @@
     { 
       "src": "/translate",
       "dest": "/api/translate"
+    },
+    { 
+      "src": "/HSK",
+      "dest": "/api/HSK"
     }
   ]
 }

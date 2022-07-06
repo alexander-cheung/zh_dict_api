@@ -6,7 +6,22 @@ average time for a response is about 1 sec for cold starts, 40 ms for warm start
 
 ## Sample Usage: 
 
-`https://zh-en-dict.vercel.app/api/translate?words=["孤獨","西瓜","休息", "gibberish"]`
+`https://zh-en-dict.vercel.app/api/translate?words=[null,"西瓜","再來"]&pinyin=true`
 
 ## Sample Response: 
-`["lonely/solitary","watermelon/CL:顆|颗,粒,個|个","rest/to rest", null]`
+`[null,"[xi1 gua1] watermelon/CL:顆|颗,粒,個|个","[zai4 lai2]"]`
+
+if pinyin is set to true the api will try to return pinyin even if a definition isn't found
+
+<br>
+
+the characters from HSK 1-6 can also be requested:
+
+## Sample Usage: 
+
+`https://zh-en-dict.vercel.app/api/HSK?lists=[1, 2]&combine=false`
+
+## Sample Response: 
+`{"HSK_1":{"爱":true,"八":true,"爸爸":true, ...}, "HSK_2": {...}`
+
+if combine is set to true, only one object will be returned, with all words in that object
