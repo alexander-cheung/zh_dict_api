@@ -9,7 +9,7 @@ average time for a response is about 1 sec for cold starts, 40 ms for warm start
 `https://zh-en-dict.vercel.app/api/translate?words=[null,"西瓜","再來"]&pinyin=true`
 
 ## Sample Response: 
-`[null,"[xi1 gua1] watermelon/CL:顆|颗,粒,個|个","[zai4 lai2]"]`
+`[null,{"def":"watermelon/CL:顆|颗,粒,個|个","pinyin":"xi1 gua1"},{"pinyin":"zai4 lai2"}]`
 
 if pinyin is set to true the api will try to return pinyin even if a definition isn't found
 

@@ -4,44 +4,67 @@ module.exports = (req, res) => {
 	let defs = [];
 	if (req.method === "GET" && req.query.words) {
 		let words = "";
-		let pinyin = false;
+		let addPinyin = false;
 		try {
 			words = JSON.parse(req.query.words);
-			pinyin = req.query.pinyin ? JSON.parse(req.query.pinyin): false;
+			addPinyin = req.query.pinyin ? JSON.parse(req.query.pinyin): false;
 		} catch {
 			res.json("Parsing Error");
 			return
 		}
 
 		for (var word of words) {
-			let def = dict[word];
+			let def = null;
+			let pinyin = "";
 
-			if (word && def) {
-				if (pinyin) {
-					defs.push(def);
-				} else {
-					def = def.substring(def.indexOf("]") + 2);
-					defs.push(def);
+			if (dict[word]) {
+				let defStart = dict[word].indexOf("]");
+				let pinyinStart = dict[word].indexOf("[");
+
+				if (defStart != -1 && pinyinStart != -1) {
+					def = dict[word].substring(defStart + 2);
+					pinyin = dict[word].substring(pinyinStart + 1, defStart);
 				}
-			} else {
-				if (pinyin && typeof(word) == "string") {
+			}
+
+			let card = def ? {"def": def} : null;
+			
+			if (addPinyin) {
+				if (pinyin) {
+					card.pinyin = pinyin;
+				} else if (typeof word === "string") {
 					let flag = false;
 					let parts = [];
 					for (char of word) {
 						if (dict[char]) {
 							let part = dict[char];
-							parts.push(part.substring(part.indexOf("[") + 1, part.indexOf("]")));
+							let begin = part.indexOf("[");
+							let end = part.indexOf("]");
+
+							if (begin === -1 || end === -1) {
+								flag = true;
+								break;
+							}
+
+							parts.push(part.substring(begin + 1, end));
 						} else {
 							flag = true;
 							break;
 						}
 					}
-					pinyinStr = flag ? null : `[${parts.join(" ")}]`;
-					defs.push(pinyinStr);
-				} else {
-					defs.push(null);
+
+					pinyinStr = flag ? null : `${parts.join(" ")}`;
+
+					if (card) {
+						card.pinyin = pinyinStr;
+					} else if (pinyinStr) {
+						card = {"pinyin": pinyinStr}
+					}
+
 				}
 			}
+
+			defs.push(card);
 		}
 	} 
 	res.json(defs);
