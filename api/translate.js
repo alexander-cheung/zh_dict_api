@@ -10,7 +10,7 @@ module.exports = (req, res) => {
 			addPinyin = req.query.pinyin ? JSON.parse(req.query.pinyin): false;
 		} catch {
 			res.json("Parsing Error");
-			return
+			return;
 		}
 
 		for (var word of words) {

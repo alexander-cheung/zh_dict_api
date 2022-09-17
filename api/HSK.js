@@ -1,7 +1,5 @@
-let lists = {};
-
 module.exports = (req, res) => {
-	let defs = [];
+	let lists = {};
 	if (req.method === "GET" && req.query.lists) {
 		let HSK = [];
 		let combine = false;
