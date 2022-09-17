@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/alexander-cheung/zh-en_dict/issues"
   },
-  "homepage": "https://github.com/alexander-cheung/zh-en_dict#readme"
+  "homepage": "https://github.com/alexander-cheung/zh-en_dict#readme",
+  "dependencies": {
+    "opencc-js": "^1.0.4"
+  }
 }

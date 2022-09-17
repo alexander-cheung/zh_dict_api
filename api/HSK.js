@@ -1,3 +1,6 @@
+const OpenCC = require('opencc-js');
+const converter = OpenCC.Converter({ from: 'cn', to: 'hk' });
+
 module.exports = (req, res) => {
 	let lists = {};
 	if (req.method === "GET" && req.query.lists) {
@@ -6,7 +9,7 @@ module.exports = (req, res) => {
 
 		try {
 			HSK = JSON.parse(req.query.lists);
-			combine = req.query.combine ? JSON.parse(req.query.combine): false;
+			combine = req.query.combine ? JSON.parse(req.query.combine) : false;
 		} catch {
 			res.json("Parsing Error");
 			return;
@@ -25,6 +28,15 @@ module.exports = (req, res) => {
 				res.json("Error: Invalid Input");
 				return;
 			}
+		}
+
+		if (req.query.trad == "true") {
+			newList = {};
+			Object.keys(lists).map(word => {
+				newList[converter(word)] = true;
+			});
+
+			lists = newList;
 		}
 	} 
 	res.json(lists);

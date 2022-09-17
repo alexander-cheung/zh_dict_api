@@ -25,3 +25,15 @@ the characters from HSK 1-6 can also be requested:
 `{"HSK_1":{"爱":true,"八":true,"爸爸":true, ...}, "HSK_2": {...}`
 
 if combine is set to true, only one object will be returned, with all words in that object
+
+<br>
+
+converting simplified to traditional is supported:
+
+## Sample Usage:
+
+`https://zh-en-dict.vercel.app/api/conv?text=不对`
+
+## Sample Response:
+
+`"不對"`

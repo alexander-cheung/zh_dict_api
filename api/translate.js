@@ -1,4 +1,6 @@
 var dict = require("../dict.json");
+const OpenCC = require('opencc-js');
+const converter = OpenCC.Converter({ from: 'cn', to: 'hk' });
 
 module.exports = (req, res) => {
 	let defs = [];
@@ -12,10 +14,12 @@ module.exports = (req, res) => {
 			res.json("Parsing Error");
 			return;
 		}
-
-		for (var word of words) {
+		
+		for (let word of words) {
 			let def = null;
 			let pinyin = "";
+
+			word = converter(word);
 
 			if (dict[word]) {
 				let defStart = dict[word].indexOf("]");
@@ -53,19 +57,19 @@ module.exports = (req, res) => {
 						}
 					}
 
-					pinyinStr = flag ? null : `${parts.join(" ")}`;
+					let pinyinStr = flag ? null : `${parts.join(" ")}`;
 
 					if (card) {
 						card.pinyin = pinyinStr;
 					} else if (pinyinStr) {
-						card = {"pinyin": pinyinStr}
+						card = {"pinyin": pinyinStr};
 					}
 
 				}
 			}
-
 			defs.push(card);
 		}
 	} 
+
 	res.json(defs);
 }
